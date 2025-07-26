@@ -6,5 +6,6 @@ services:
     region: singapore
     buildCommand: |
       composer install --no-dev --optimize-autoloader
+      php spark cache:clear
       php spark migrate --all --no-interaction
     startCommand: apache2-foreground
