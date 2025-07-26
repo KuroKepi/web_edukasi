@@ -16,12 +16,13 @@ RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /et
 COPY . /var/www/html/
 COPY .env /var/www/html/.env
 # Set permission supaya writable folder bisa dipakai untuk logs, cache, dsb
-RUN mkdir -p /var/www/html/writable/cache \
+RUN mkdir -p /var/www/html/writable \
+    && mkdir -p /var/www/html/writable/cache \
     && mkdir -p /var/www/html/writable/logs \
-    && mkdir -p /var/www/html/writable/session \
     && touch /var/www/html/writable/database.db \
-    && chown -R www-data:www-data /var/www/html/writable \
-    && chmod -R 777 /var/www/html/writable
+    && chmod -R 777 /var/www/html/writable \
+    && chown -R www-data:www-data /var/www/html/writable
+
 
 
 
