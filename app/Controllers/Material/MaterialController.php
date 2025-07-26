@@ -14,12 +14,13 @@ class MaterialController extends BaseController
 
         $data['materi'] = $model->getByUser($userId);
 
-        return view('Material/material', $data);
+        return view('Material/Material', $data);
     }
+
 
     public function upload()
     {
-        return view('Material/upload');
+        return view('Material/Upload');
     }
 
     public function save()
@@ -43,7 +44,7 @@ class MaterialController extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Materi tidak ditemukan.");
         }
 
-        return view('Material/detail', ['materi' => $materi]);
+        return view('Material/Detail', ['materi' => $materi]);
     }
 
     public function delete($id)
@@ -77,7 +78,7 @@ class MaterialController extends BaseController
             return redirect()->to('/materi')->with('error', 'Data tidak ditemukan atau tidak berhak mengedit.');
         }
 
-        return view('Material/edit', ['materi' => $materi]);
+        return view('Material/Edit', ['materi' => $materi]);
     }
 
     public function update($id)

@@ -17,7 +17,7 @@ class ApprovalController extends BaseController
     public function index()
     {
         $materi = $this->materialModel->orderBy('created_at', 'DESC')->findAll();
-        return view('Material/approval', ['materi' => $materi]);
+        return view('Material/Approval', ['materi' => $materi]);
     }
 
     public function approve($id)
