@@ -7,5 +7,6 @@ services:
     buildCommand: |
       composer install --no-dev --optimize-autoloader
       php spark cache:clear
+    startCommand: |
       php spark migrate --all --no-interaction
-    startCommand: apache2-foreground
+      apache2-foreground
