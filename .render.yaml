@@ -8,5 +8,5 @@ services:
       composer install --no-dev --optimize-autoloader
       php spark cache:clear
     startCommand: >
-      php spark migrate --all --no-interaction &&
+      psql -h $DB_HOST -U $DB_USER -d $DB_NAME -f /docker/init_all.sql &&
       apache2-foreground
