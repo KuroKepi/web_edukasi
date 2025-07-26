@@ -4,8 +4,9 @@ FROM php:8.2-apache
 RUN apt-get update && apt-get install -y \
     unzip git zip libzip-dev zlib1g-dev libicu-dev libonig-dev libxml2-dev \
     libcurl4-openssl-dev pkg-config libssl-dev build-essential autoconf \
-    default-mysql-client libmysqlclient-dev \
+    mysql-client libmysqlclient-dev \
     && docker-php-ext-install intl pdo pdo_mysql mbstring zip
+
 
 
 # Aktifkan mod_rewrite (dibutuhkan CodeIgniter)
