@@ -1,13 +1,10 @@
 FROM php:8.2-apache
 
-# Install dependencies untuk PHP extension dan MySQL
+# Install dependencies dan library tambahan agar docker-php-ext-install tidak gagal
 RUN apt-get update && apt-get install -y \
     unzip git zip libzip-dev zlib1g-dev libicu-dev libonig-dev libxml2-dev \
     libcurl4-openssl-dev pkg-config libssl-dev build-essential autoconf \
-    mariadb-client libmariadb-dev-compat libmariadb-dev \
-    && docker-php-ext-install intl pdo pdo_mysql mbstring zip
-
-
+    && docker-php-ext-install intl pdo pdo_pgsql pgsql mbstring zip
 
 # Aktifkan mod_rewrite (dibutuhkan CodeIgniter)
 RUN a2enmod rewrite
