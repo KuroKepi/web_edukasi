@@ -9,7 +9,7 @@ class RegisterController extends BaseController
 {
     public function index()
     {
-        return view('auth/register');
+        return view('Auth/register');
     }
 
    public function process()

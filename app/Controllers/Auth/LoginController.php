@@ -9,7 +9,7 @@ class LoginController extends BaseController
 {
     public function index()
     {
-        return view('auth/login');
+        return view('Auth/login');
     }
 
     public function process()
@@ -38,7 +38,7 @@ class LoginController extends BaseController
             'isLoggedIn' => true
         ]);
 
-        return redirect()->to('/user/dashboard');
+        return redirect()->to('/User/dashboard');
     }
 
     public function logout()
