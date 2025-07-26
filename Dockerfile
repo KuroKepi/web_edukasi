@@ -1,10 +1,5 @@
-# Stage 1: Get Composer from official image
-FROM composer:latest AS composer_stage
-
-# Stage 2: Main app
 FROM php:8.2-apache
 
-# Install dependencies and intl extension
 RUN apt-get update && apt-get install -y \
     libicu-dev \
     unzip \
@@ -12,21 +7,21 @@ RUN apt-get update && apt-get install -y \
     zip \
     && docker-php-ext-install intl pdo pdo_mysql
 
-# Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
-# Copy Composer from previous stage
-COPY --from=composer_stage /usr/bin/composer /usr/bin/composer
+# Set Apache DocumentRoot ke public/
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
-# Copy source code to container
+# Override default conf
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf && \
+    sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
 COPY . /var/www/html/
+WORKDIR /var/www/html
 
-# Set working directory
-WORKDIR /var/www/html/
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Fix permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
