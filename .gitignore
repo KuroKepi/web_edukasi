@@ -1,0 +1,10 @@
+/vendor/
+/env
+writable/*
+!writable/index.html
+!writable/.gitkeep
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
