@@ -9,21 +9,17 @@ class CreateMaterials extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'           => ['type' => 'INT', 'unsigned' => true, 'auto_increment' => true],
-            'user_id'      => ['type' => 'INT', 'unsigned' => true],
+            'id'           => ['type' => 'SERIAL'], // PostgreSQL style auto-increment
+            'user_id'      => ['type' => 'INT'],
             'title'        => ['type' => 'VARCHAR', 'constraint' => 255],
             'description'  => ['type' => 'TEXT', 'null' => true],
-            'type'         => [
-                'type'       => 'ENUM',
-                'constraint' => ['artikel', 'image', 'ebook', 'audio', 'video'],
-                'null'       => false,
-            ],
+            'type'         => ['type' => 'VARCHAR', 'constraint' => 20], // ENUM diganti VARCHAR
             'file_path'    => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
             'thumbnail'    => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
-            'is_approved'  => ['type' => 'TINYINT', 'default' => 0],
-            'approved_at'  => ['type' => 'DATETIME', 'null' => true],
-            'created_at'   => ['type' => 'DATETIME', 'null' => true],
-            'updated_at'   => ['type' => 'DATETIME', 'null' => true]
+            'is_approved'  => ['type' => 'BOOLEAN', 'default' => false], // TINYINT => BOOLEAN
+            'approved_at'  => ['type' => 'TIMESTAMP', 'null' => true],
+            'created_at'   => ['type' => 'TIMESTAMP', 'null' => true],
+            'updated_at'   => ['type' => 'TIMESTAMP', 'null' => true],
         ]);
 
         $this->forge->addKey('id', true);

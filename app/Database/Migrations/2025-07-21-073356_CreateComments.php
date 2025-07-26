@@ -9,14 +9,15 @@ class CreateComments extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'          => ['type' => 'INT', 'unsigned' => true, 'auto_increment' => true],
-            'user_id'     => ['type' => 'INT', 'unsigned' => true],
-            'material_id' => ['type' => 'INT', 'unsigned' => true],
-            'parent_id'   => ['type' => 'INT', 'unsigned' => true, 'null' => true],
+            'id'          => ['type' => 'SERIAL'],
+            'user_id'     => ['type' => 'INT'],
+            'material_id' => ['type' => 'INT'],
+            'parent_id'   => ['type' => 'INT', 'null' => true],
             'content'     => ['type' => 'TEXT'],
-            'created_at'  => ['type' => 'DATETIME', 'null' => true],
-            'updated_at'  => ['type' => 'DATETIME', 'null' => true]
+            'created_at'  => ['type' => 'TIMESTAMP', 'null' => true],
+            'updated_at'  => ['type' => 'TIMESTAMP', 'null' => true],
         ]);
+
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('material_id', 'materials', 'id', 'CASCADE', 'CASCADE');
