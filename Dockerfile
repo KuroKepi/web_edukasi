@@ -22,6 +22,11 @@ RUN mkdir -p /var/www/html/writable \
     && touch /var/www/html/writable/database.db \
     && chmod -R 777 /var/www/html/writable \
     && chown -R www-data:www-data /var/www/html/writable
+    
+    RUN mkdir -p /tmp \
+    && touch /tmp/database.db \
+    && chmod 777 /tmp/database.db
+
 
 
 
