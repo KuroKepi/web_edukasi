@@ -8,9 +8,5 @@ services:
       composer install --no-dev --optimize-autoloader
       php spark cache:clear
     startCommand: >
-      echo ">>> MIGRATE MULAI..." &&
-      php spark migrate --all --no-interaction > /tmp/migrate.log 2>&1 ||
-      echo ">>> MIGRATE GAGAL" &&
-      cat /tmp/migrate.log &&
-      echo ">>> APACHE START..." &&
+      php spark migrate --all --no-interaction &&
       apache2-foreground
