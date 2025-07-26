@@ -38,7 +38,7 @@ class LoginController extends BaseController
             'isLoggedIn' => true
         ]);
 
-        return redirect()->to('/User/dashboard');
+        return redirect()->to('/user/dashboard');
     }
 
     public function logout()
