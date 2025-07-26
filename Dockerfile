@@ -1,16 +1,28 @@
 FROM php:8.2-apache
 
-# Install PHP extensions
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+# Install dependencies and intl extension
+RUN apt-get update && apt-get install -y \
+    libicu-dev \
+    unzip \
+    git \
+    zip \
+    && docker-php-ext-install intl pdo pdo_mysql
 
+# Enable mod_rewrite
 RUN a2enmod rewrite
 
-COPY . /var/www/html
+# Copy app source code
+COPY . /var/www/html/
 
+# Set working directory
+WORKDIR /var/www/html/
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader
+
+# Set correct permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
-
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-
-RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf \
-    && sed -ri -e 's!/var/www/!/var/www/html/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
