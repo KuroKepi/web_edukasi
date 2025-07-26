@@ -8,3 +8,7 @@
 Thumbs.db
 *.log
 docker-compose.yaml
+writable/*
+!writable/cache/
+!writable/logs/
+!writable/database.db
