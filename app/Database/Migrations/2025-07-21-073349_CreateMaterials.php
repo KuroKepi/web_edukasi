@@ -9,14 +9,14 @@ class CreateMaterials extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'           => ['type' => 'SERIAL'], // PostgreSQL style auto-increment
+            'id'           => ['type' => 'SERIAL'],
             'user_id'      => ['type' => 'INT'],
             'title'        => ['type' => 'VARCHAR', 'constraint' => 255],
             'description'  => ['type' => 'TEXT', 'null' => true],
-            'type'         => ['type' => 'VARCHAR', 'constraint' => 20], // ENUM diganti VARCHAR
+            'type'         => ['type' => 'VARCHAR', 'constraint' => 20],
             'file_path'    => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
             'thumbnail'    => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
-            'is_approved'  => ['type' => 'BOOLEAN', 'default' => false], // TINYINT => BOOLEAN
+            'is_approved'  => ['type' => 'SMALLINT', 'default' => 0],
             'approved_at'  => ['type' => 'TIMESTAMP', 'null' => true],
             'created_at'   => ['type' => 'TIMESTAMP', 'null' => true],
             'updated_at'   => ['type' => 'TIMESTAMP', 'null' => true],

@@ -16,7 +16,7 @@ RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /et
 
 # Salin semua file proyek ke container
 COPY . /var/www/html/
-COPY .env /var/www/html/.env
+#COPY .env /var/www/html/.env
 # Set permission supaya writable folder bisa dipakai untuk logs, cache, dsb
 RUN mkdir -p /var/www/html/writable \
     && mkdir -p /var/www/html/writable/cache \
