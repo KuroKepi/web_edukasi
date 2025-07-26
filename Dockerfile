@@ -13,6 +13,7 @@ RUN a2enmod rewrite
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
 
 # Salin semua file proyek ke container
+ENV CI_ENVIRONMENT=development
 COPY . /var/www/html/
 COPY .env /var/www/html/.env
 # Set permission supaya writable folder bisa dipakai untuk logs, cache, dsb
