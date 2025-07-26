@@ -1,5 +1,6 @@
 FROM php:8.2-apache
 
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     libicu-dev \
     unzip \
@@ -7,17 +8,21 @@ RUN apt-get update && apt-get install -y \
     zip \
     && docker-php-ext-install intl pdo pdo_mysql
 
-# Enable mod_rewrite
+# Enable Apache modules
 RUN a2enmod rewrite
+
+# ✅ Ubah document root ke /var/www/html/public
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+
+RUN sed -ri -e "s!/var/www/html!${APACHE_DOCUMENT_ROOT}!g" \
+    /etc/apache2/sites-available/000-default.conf \
+    /etc/apache2/apache2.conf
+
+# Copy project
+COPY . /var/www/html
 
 # Set working directory
 WORKDIR /var/www/html
-
-# Copy app source code
-COPY . /var/www/html
-
-# Move public folder contents to Apache root
-RUN cp -r public/* /var/www/html/ && rm -rf public
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -25,6 +30,6 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Set permissions
+# Fix permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
