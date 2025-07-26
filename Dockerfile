@@ -16,8 +16,11 @@ RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /et
 COPY . /var/www/html/
 COPY .env /var/www/html/.env
 # Set permission supaya writable folder bisa dipakai untuk logs, cache, dsb
-RUN chown -R www-data:www-data /var/www/html/writable \
-    && chmod -R 777 /var/www/html/writable
+RUN mkdir -p /var/www/html/writable/cache \
+    && chmod -R 777 /var/www/html/writable \
+    && chmod -R a+rwx /var/www/html/writable/cache \
+    && chown -R www-data:www-data /var/www/html/writable
+
 
 # Tambahkan composer dari image resmi
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

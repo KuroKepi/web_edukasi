@@ -1,6 +1,5 @@
 /vendor/
 /env
-writable/*
 !writable/index.html
 !writable/.gitkeep
 .vscode/
