@@ -25,31 +25,31 @@ class Database extends Config
      * @var array<string, mixed>
      */
     public array $default = [
-    'DSN'          => '',
-    'hostname'     => getenv('DB_HOST') ?: 'localhost',
-    'username'     => getenv('DB_USER') ?: 'postgres',
-    'password'     => getenv('DB_PASS') ?: 'paramadaksa',
-    'database'     => getenv('DB_NAME') ?: 'codeigniter',
-    'DBDriver'     => 'Postgre',
-    'DBPrefix'     => '',
-    'pConnect'     => false,
-    'DBDebug'      => (ENVIRONMENT !== 'production'),
-    'charset'      => 'UTF8',
-    'DBCollat'     => '',
-    'swapPre'      => '',
-    'encrypt'      => false,
-    'compress'     => false,
-    'strictOn'     => false,
-    'failover'     => [],
-    'port'         => 5432,
-    'numberNative' => false,
-    'foundRows'    => false,
-    'dateFormat'   => [
-        'date'     => 'Y-m-d',
-        'datetime' => 'Y-m-d H:i:s',
-        'time'     => 'H:i:s',
-    ],
-];
+        'DSN'          => '',
+        'hostname'     => 'dpg-d22j7vmmcj7s738jlq7g-a',
+        'username'     => 'edukasi_user',
+        'password'     => 'n0EmXYcA7EzBKeZpM8spb5jIj5v1Sk44',
+        'database'     => 'db_edukasi',
+        'DBDriver'     => 'Postgre',
+        'DBPrefix'     => '',
+        'pConnect'     => false,
+        'DBDebug'      => true,
+        'charset'      => 'UTF8',
+        'DBCollat'     => '',
+        'swapPre'      => '',
+        'encrypt'      => false,
+        'compress'     => false,
+        'strictOn'     => false,
+        'failover'     => [],
+        'port'         => 5432,
+        'numberNative' => false,
+        'foundRows'    => false,
+        'dateFormat'   => [
+            'date'     => 'Y-m-d',
+            'datetime' => 'Y-m-d H:i:s',
+            'time'     => 'H:i:s',
+        ],
+    ];
 
     //    /**
     //     * Sample database connection for SQLite3.
