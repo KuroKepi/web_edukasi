@@ -13,11 +13,11 @@ class GuestController extends BaseController
                     ->where('is_approved', 1)
                     ->findAll();
 
-        return view('Guest/Welcome', ['materi' => $materi]);
+        return view('Guest/welcome', ['materi' => $materi]);
     }
 
     public function about()
     {
-        return view('Guest/About');
+        return view('Guest/about');
     }
 }
