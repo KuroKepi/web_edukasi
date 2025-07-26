@@ -4,5 +4,7 @@ services:
     runtime: docker
     plan: free
     region: singapore
-    buildCommand: "composer install --no-dev --optimize-autoloader"
-    startCommand: "apache2-foreground"
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php spark migrate --all --no-interaction
+    startCommand: apache2-foreground

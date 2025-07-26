@@ -1,25 +1,29 @@
 FROM php:8.2-apache
 
-# Install ekstensi & dependencies
+# Install dependencies dan library tambahan agar docker-php-ext-install tidak gagal
 RUN apt-get update && apt-get install -y \
-    libicu-dev unzip git zip \
-    && docker-php-ext-install intl pdo pdo_mysql mbstring
+    unzip git zip libzip-dev zlib1g-dev libicu-dev libonig-dev libxml2-dev \
+    libcurl4-openssl-dev pkg-config libssl-dev build-essential autoconf \
+    && docker-php-ext-install intl pdo pdo_mysql mysqli mbstring zip
 
-# Aktifkan mod_rewrite (CodeIgniter butuh)
+# Aktifkan mod_rewrite (dibutuhkan CodeIgniter)
 RUN a2enmod rewrite
 
-# Ubah DocumentRoot ke /public
+# Ubah DocumentRoot ke /public agar CI4 bisa langsung jalan
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
 
-# Copy semua file project ke dalam container
+# Salin semua file proyek ke container
 COPY . /var/www/html/
 
-# Set permission (wajib di CI4 biar writable jalan)
+# Set permission supaya writable folder bisa dipakai untuk logs, cache, dsb
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+    && chmod -R 755 /var/www/html/writable
 
-# Install composer dari image composer terbaru
+# Tambahkan composer dari image resmi
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install dependencies PHP
+# Pindah ke folder kerja (root proyek)
+WORKDIR /var/www/html
+
+# Install PHP dependencies via composer
 RUN composer install --no-dev --optimize-autoloader

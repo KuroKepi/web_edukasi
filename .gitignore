@@ -8,3 +8,4 @@ writable/*
 .DS_Store
 Thumbs.db
 *.log
+docker-compose.yaml
