@@ -10,7 +10,7 @@
  |
  | If you set 'display_errors' to '1', CI4's detailed error report will show.
  */
-var_dump($_ENV['CI_ENVIRONMENT']); exit;
+//var_dump($_ENV['CI_ENVIRONMENT']); exit;
 
 /*
  |--------------------------------------------------------------------------
