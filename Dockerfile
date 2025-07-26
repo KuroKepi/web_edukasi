@@ -1,35 +1,17 @@
 FROM php:8.2-apache
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    libicu-dev \
-    unzip \
-    git \
-    zip \
-    && docker-php-ext-install intl pdo pdo_mysql
+RUN apt-get update && apt-get install -y libicu-dev unzip git zip \
+    && docker-php-ext-install intl pdo pdo_mysql mbstring
 
-# Enable Apache modules
 RUN a2enmod rewrite
 
-# ✅ Ubah document root ke /var/www/html/public
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+COPY . /var/www/html/
+WORKDIR /var/www/html/
 
-RUN sed -ri -e "s!/var/www/html!${APACHE_DOCUMENT_ROOT}!g" \
-    /etc/apache2/sites-available/000-default.conf \
-    /etc/apache2/apache2.conf
+RUN chmod -R 755 /var/www/html \
+    && chown -R www-data:www-data /var/www/html
 
-# Copy project
-COPY . /var/www/html
-
-# Set working directory
-WORKDIR /var/www/html
-
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Fix permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+EXPOSE 80
+CMD ["apache2-foreground"]

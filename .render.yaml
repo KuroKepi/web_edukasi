@@ -4,4 +4,6 @@ services:
     runtime: docker
     plan: free
     region: singapore
+    buildCommand: docker build -t ci-app .
+    startCommand: docker run -p 80:80 ci-app
     rootDir: .
