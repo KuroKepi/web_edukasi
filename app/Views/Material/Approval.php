@@ -133,6 +133,9 @@
     $('#materiTable').DataTable();
     setTimeout(() => $('#flash-message').fadeOut(), 5000);
   });
+   function toggleDropdown() {
+      document.getElementById('dropdown').classList.toggle('hidden');
+    }
 </script>
 </body>
 </html>
