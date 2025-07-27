@@ -53,7 +53,7 @@
             <p><strong>Akun Demo Admin:</strong></p>
             <ul class="list-disc list-inside">
               <li>John@gmail.com password:user123 role:admin</li>
-              <li>Admin@gmail.com password:user123 role:admin</li>
+              <li>admin@gmail.com password:user123 role:admin</li>
             </ul>
           </div>
         </div>
