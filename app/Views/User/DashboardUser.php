@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <title>Dashboard User</title>
@@ -91,6 +92,10 @@
     $(document).ready(function () {
       $('#materiTable').DataTable();
     });
+    function toggleDropdown() {
+      document.getElementById('dropdown').classList.toggle('hidden');
+    }
   </script>
 </body>
+
 </html>

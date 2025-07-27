@@ -40,7 +40,8 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-500 mb-1">Tanggal Dibuat</label>
                             <p class="text-gray-800">
-                                <?= $user['created_at'] ? date('d M Y H:i', strtotime($user['created_at'])) : '-' ?></p>
+                                <?= $user['created_at'] ? date('d M Y H:i', strtotime($user['created_at'])) : '-' ?>
+                            </p>
                         </div>
                     </div>
 
@@ -58,6 +59,11 @@
             </div>
         </main>
     </div>
+    <script>
+        function toggleDropdown() {
+            document.getElementById('dropdown').classList.toggle('hidden');
+        }
+    </script>
 </body>
 
 </html>

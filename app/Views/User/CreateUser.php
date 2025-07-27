@@ -106,6 +106,9 @@
                 setTimeout(() => notif.style.display = 'none', 5000);
             }
         });
+        function toggleDropdown() {
+            document.getElementById('dropdown').classList.toggle('hidden');
+        }
     </script>
 
 </body>

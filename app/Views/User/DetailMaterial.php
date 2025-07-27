@@ -128,6 +128,9 @@
             const form = document.getElementById('reply-form-' + id);
             form.classList.toggle('hidden');
         }
+        function toggleDropdown() {
+            document.getElementById('dropdown').classList.toggle('hidden');
+        }
     </script>
 
 </body>
