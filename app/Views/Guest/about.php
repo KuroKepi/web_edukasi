@@ -48,7 +48,7 @@
             </ul>
 
             <p class="pt-4"><strong>Kelas Kelompok:</strong> IF 401</p>
-            <p><strong>Nama Mata Kuliah:</strong> Pemrograman Web II</p>
+            <p><strong>Nama Mata Kuliah:</strong> Pemrograman Web II</p><br>
 
             <p><strong>Akun Demo Admin:</strong></p>
             <ul class="list-disc list-inside">

@@ -1,3 +1,13 @@
+<?php
+// Nama Kelompok:
+// 1. MUHAMMAD ARFANI (230401010086)
+// 2. MAFASYAFA ANNISA ZUKHRUFF (230401010036)
+// 3. ZELDA ELISA HIJRY (230401010046)
+//
+// Kelas Kelompok: IF 401
+// Nama Mata Kuliah: Pemrograman Web II
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
